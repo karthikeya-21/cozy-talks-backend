@@ -4,6 +4,7 @@ import { NestExpressApplication } from "@nestjs/platform-express";
 import { join } from "path";
 
 import { AppModule } from "./app.module";
+import { getCorsOptions } from "./config/cors.config";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -20,10 +21,7 @@ async function bootstrap() {
     }),
   );
 
-  app.enableCors({
-    origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
-    credentials: true,
-  });
+  app.enableCors(getCorsOptions());
 
   const port = Number(process.env.PORT ?? 3001);
   await app.listen(port);

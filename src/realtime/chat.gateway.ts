@@ -14,15 +14,13 @@ import { Server, Socket } from "socket.io";
 
 import { PrismaService } from "../prisma/prisma.service";
 import { MessagesService } from "../messages/messages.service";
+import { getSocketCorsOptions } from "../config/cors.config";
 import { RealtimeEventsService } from "./realtime-events.service";
 import { SocketMessageDto } from "./dto/socket-message.dto";
 
 @WebSocketGateway({
   namespace: "chat",
-  cors: {
-    origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
-    credentials: true,
-  },
+  cors: getSocketCorsOptions(),
 })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
