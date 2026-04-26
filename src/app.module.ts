@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import type { StringValue } from "ms";
 
+import { AiModule } from "./ai/ai.module";
 import { AppController } from "./app.controller";
 import { AuthModule } from "./auth/auth.module";
 import { ChatRequestsModule } from "./chat-requests/chat-requests.module";
@@ -29,6 +30,7 @@ import { UsersModule } from "./users/users.module";
         },
       }),
     }),
+    AiModule,
     PrismaModule,
     AuthModule,
     UsersModule,

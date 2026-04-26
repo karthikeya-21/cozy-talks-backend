@@ -20,6 +20,7 @@ const client_1 = require("@prisma/client");
 const socket_io_1 = require("socket.io");
 const prisma_service_1 = require("../prisma/prisma.service");
 const messages_service_1 = require("../messages/messages.service");
+const cors_config_1 = require("../config/cors.config");
 const realtime_events_service_1 = require("./realtime-events.service");
 const socket_message_dto_1 = require("./dto/socket-message.dto");
 let ChatGateway = class ChatGateway {
@@ -141,10 +142,7 @@ __decorate([
 exports.ChatGateway = ChatGateway = __decorate([
     (0, websockets_1.WebSocketGateway)({
         namespace: "chat",
-        cors: {
-            origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
-            credentials: true,
-        },
+        cors: (0, cors_config_1.getSocketCorsOptions)(),
     }),
     __metadata("design:paramtypes", [jwt_1.JwtService,
         prisma_service_1.PrismaService,

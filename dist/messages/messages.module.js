@@ -8,7 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MessagesModule = void 0;
 const common_1 = require("@nestjs/common");
+const ai_module_1 = require("../ai/ai.module");
 const chat_requests_module_1 = require("../chat-requests/chat-requests.module");
+const realtime_module_1 = require("../realtime/realtime.module");
+const users_module_1 = require("../users/users.module");
 const messages_controller_1 = require("./messages.controller");
 const messages_service_1 = require("./messages.service");
 let MessagesModule = class MessagesModule {
@@ -16,7 +19,7 @@ let MessagesModule = class MessagesModule {
 exports.MessagesModule = MessagesModule;
 exports.MessagesModule = MessagesModule = __decorate([
     (0, common_1.Module)({
-        imports: [(0, common_1.forwardRef)(() => chat_requests_module_1.ChatRequestsModule)],
+        imports: [ai_module_1.AiModule, (0, common_1.forwardRef)(() => chat_requests_module_1.ChatRequestsModule), (0, common_1.forwardRef)(() => realtime_module_1.RealtimeModule), users_module_1.UsersModule],
         controllers: [messages_controller_1.MessagesController],
         providers: [messages_service_1.MessagesService],
         exports: [messages_service_1.MessagesService],

@@ -4,6 +4,7 @@ const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
 const path_1 = require("path");
 const app_module_1 = require("./app.module");
+const cors_config_1 = require("./config/cors.config");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.setGlobalPrefix("api");
@@ -15,10 +16,7 @@ async function bootstrap() {
         transform: true,
         forbidNonWhitelisted: true,
     }));
-    app.enableCors({
-        origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
-        credentials: true,
-    });
+    app.enableCors((0, cors_config_1.getCorsOptions)());
     const port = Number(process.env.PORT ?? 3001);
     await app.listen(port);
 }

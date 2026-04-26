@@ -11,8 +11,8 @@ export declare class ChatRequestsService {
         status: import(".prisma/client").$Enums.ChatRequestStatus;
         createdAt: Date;
         updatedAt: Date;
-        toUserId: number;
         fromUserId: number;
+        toUserId: number;
     }>;
     list(currentUserId: number): Promise<{
         id: number;
@@ -32,8 +32,8 @@ export declare class ChatRequestsService {
         status: import(".prisma/client").$Enums.ChatRequestStatus;
         createdAt: Date;
         updatedAt: Date;
-        toUserId: number;
         fromUserId: number;
+        toUserId: number;
     }>;
     areUsersConnected(firstUserId: number, secondUserId: number): Promise<boolean>;
 }

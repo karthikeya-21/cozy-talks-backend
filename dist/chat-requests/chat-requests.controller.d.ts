@@ -26,8 +26,8 @@ export declare class ChatRequestsController {
         status: import(".prisma/client").$Enums.ChatRequestStatus;
         createdAt: Date;
         updatedAt: Date;
-        toUserId: number;
         fromUserId: number;
+        toUserId: number;
     }>;
     update(user: {
         userId: number;
@@ -36,7 +36,7 @@ export declare class ChatRequestsController {
         status: import(".prisma/client").$Enums.ChatRequestStatus;
         createdAt: Date;
         updatedAt: Date;
-        toUserId: number;
         fromUserId: number;
+        toUserId: number;
     }>;
 }

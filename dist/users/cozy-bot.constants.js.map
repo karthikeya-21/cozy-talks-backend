@@ -1,0 +1,1 @@
+{"version":3,"file":"cozy-bot.constants.js","sourceRoot":"","sources":["../../src/users/cozy-bot.constants.ts"],"names":[],"mappings":";;;AAGA,wCAEC;AALY,QAAA,aAAa,GAAG,UAAU,CAAC;AAC3B,QAAA,cAAc,GAAG,uBAAuB,CAAC;AAEtD,SAAgB,cAAc,CAAC,KAAa;IAC1C,OAAO,KAAK,CAAC,IAAI,EAAE,CAAC,WAAW,EAAE,KAAK,sBAAc,CAAC;AACvD,CAAC"}
