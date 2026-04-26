@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import type { StringValue } from "ms";
 
+import { AppController } from "./app.controller";
 import { AuthModule } from "./auth/auth.module";
 import { ChatRequestsModule } from "./chat-requests/chat-requests.module";
 import { MessagesModule } from "./messages/messages.module";
@@ -12,6 +13,7 @@ import { UploadsModule } from "./uploads/uploads.module";
 import { UsersModule } from "./users/users.module";
 
 @Module({
+  controllers: [AppController],
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
