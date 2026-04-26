@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum UserStatus {
+  ONLINE
+  OFFLINE
+}
+
+enum ChatRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+}
+
+model User {
+  id               Int           @id @default(autoincrement())
+  name             String
+  email            String        @unique
+  passwordHash     String
+  avatarUrl        String?
+  socketId         String?
+  status           UserStatus    @default(OFFLINE)
+  lastSeenAt       DateTime?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  sentRequests     ChatRequest[] @relation("ChatRequestSender")
+  receivedRequests ChatRequest[] @relation("ChatRequestReceiver")
+  sentMessages     Message[]     @relation("MessageSender")
+  receivedMessages Message[]     @relation("MessageReceiver")
+}
+
+model ChatRequest {
+  id         Int               @id @default(autoincrement())
+  fromUserId Int
+  toUserId   Int
+  status     ChatRequestStatus @default(PENDING)
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+  fromUser   User              @relation("ChatRequestSender", fields: [fromUserId], references: [id], onDelete: Cascade)
+  toUser     User              @relation("ChatRequestReceiver", fields: [toUserId], references: [id], onDelete: Cascade)
+
+  @@unique([fromUserId, toUserId])
+}
+
+model Message {
+  id         Int         @id @default(autoincrement())
+  fromUserId Int
+  toUserId   Int
+  content    String
+  type       MessageType @default(TEXT)
+  mediaUrl   String?
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  fromUser   User        @relation("MessageSender", fields: [fromUserId], references: [id], onDelete: Cascade)
+  toUser     User        @relation("MessageReceiver", fields: [toUserId], references: [id], onDelete: Cascade)
+}
