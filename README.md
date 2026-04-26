@@ -60,11 +60,24 @@ Notes:
 
 ## Getting Started
 
+1. Install dependencies:
+
 ```bash
 npm install
-Copy .env.example to .env and update the database credentials
+```
+
+2. Create `.env` from `.env.example` and update the database credentials.
+
+3. Generate the Prisma client and run migrations:
+
+```bash
 npx prisma generate
 npx prisma migrate dev
+```
+
+4. Start the development server:
+
+```bash
 npm run start:dev
 ```
 
